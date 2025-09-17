@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import HomeScreen from "./components/HomeScreen";        // still in components
+import MultiplayerScreen from "./screens/MultiplayerScreen";  // in screens
+import TossScreen from "./screens/TossScreen";           // new import
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [screen, setScreen] = useState("home");
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {screen === "home" && <HomeScreen onAction={setScreen} />}
+      {screen === "multiplayer" && <MultiplayerScreen onAction={setScreen} />}
+      {screen === "toss" && <TossScreen onAction={setScreen} />}
+
+      {/* 👇 Dummy placeholder screen for now */}
+      {screen === "game" && (
+        <div
+          style={{
+            color: "white",
+            fontSize: "32px",
+            textAlign: "center",
+            marginTop: "200px",
+          }}
+        >
+          ⏳ Waiting for the Next Screen...
+        </div>
+      )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
+

@@ -1,0 +1,475 @@
+.toss-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.toss-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.toss-light-left,
+.toss-light-right {
+  position: absolute;
+  bottom: 22%;
+  width: 220px;
+  z-index: 2;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 150, 0.6));
+}
+
+.toss-light-left {
+  left: 12%;
+}
+
+.toss-light-right {
+  right: 12%;
+}
+
+.toss-stumps {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  z-index: 3;
+}
+
+/* Animated Stars */
+.toss-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.toss-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: toss-twinkle 3s infinite ease-in-out;
+}
+
+@keyframes toss-twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* Common Title Styling */
+.toss-title {
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  z-index: 10;
+  animation: toss-fade-in 0.8s ease-out;
+}
+
+@keyframes toss-fade-in {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Step 1: Odd/Even Choice */
+.toss-step1 {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  z-index: 10;
+}
+
+.toss-ball-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+}
+
+.toss-cricket-ball {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  animation: toss-ball-appear 0.8s ease-out;
+}
+
+.toss-cricket-ball:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+
+.toss-ball-text {
+  position: absolute;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+@keyframes toss-ball-appear {
+  from { opacity: 0; transform: scale(0) rotate(180deg); }
+  to { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Step 2: Number Selection */
+.toss-step2 {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  z-index: 10;
+}
+
+.toss-number-balls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 700px;
+}
+
+.toss-number-ball {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  animation: toss-number-appear 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.toss-number-ball:hover {
+  transform: scale(1.15);
+}
+
+.toss-number-text {
+  position: absolute;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+@keyframes toss-number-appear {
+  from { opacity: 0; transform: translateY(-50px) scale(0); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Step 3: Result Animation */
+.toss-step3 {
+  position: relative;
+  z-index: 10;
+}
+
+.toss-battle-arena {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toss-player-side,
+.toss-ai-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.toss-avatar {
+  font-size: 80px;
+  animation: toss-avatar-bounce 2s ease-in-out infinite;
+}
+
+@keyframes toss-avatar-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.toss-player-label,
+.toss-ai-label {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.toss-result-ball {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.toss-result-number {
+  position: absolute;
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+.toss-calculation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  animation: toss-calc-appear 2s ease-out 1s both;
+}
+
+.toss-calc-line {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.toss-calc-number,
+.toss-calc-sum {
+  background: rgba(255, 215, 0, 0.2);
+  padding: 10px 15px;
+  border-radius: 50%;
+  border: 2px solid gold;
+}
+
+.toss-calc-plus,
+.toss-calc-equals {
+  color: #FFD700;
+}
+
+.toss-calc-result {
+  color: #FFD700;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes toss-calc-appear {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.toss-final-result {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: toss-result-appear 2.5s ease-out 1.5s both;
+}
+
+.toss-win-text {
+  color: #FFD700;
+  font-size: 48px;
+  font-weight: bold;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  animation: toss-golden-glow 2s ease-in-out infinite;
+}
+
+.toss-lose-text {
+  color: #FF4444;
+  font-size: 48px;
+  font-weight: bold;
+  text-shadow: 0 0 20px rgba(255, 68, 68, 0.8);
+  animation: toss-red-glow 2s ease-in-out infinite;
+}
+
+@keyframes toss-golden-glow {
+  0%, 100% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+  50% { text-shadow: 0 0 40px rgba(255, 215, 0, 1), 0 0 60px rgba(255, 215, 0, 0.6); }
+}
+
+@keyframes toss-red-glow {
+  0%, 100% { text-shadow: 0 0 20px rgba(255, 68, 68, 0.8); }
+  50% { text-shadow: 0 0 40px rgba(255, 68, 68, 1), 0 0 60px rgba(255, 68, 68, 0.6); }
+}
+
+@keyframes toss-result-appear {
+  from { opacity: 0; transform: translateX(-50%) translateY(30px) scale(0.5); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+/* Move next/controls so they appear above stumps */
+.toss-action-buttons {
+  position: fixed;
+  bottom: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+  animation: toss-buttons-appear 0.6s ease-out both;
+  z-index: 20;
+}
+
+.toss-proceed-btn,
+.toss-home-btn {
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.toss-proceed-btn {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+}
+
+.toss-home-btn {
+  background: linear-gradient(45deg, #007bff, #00c6ff);
+  color: white;
+}
+
+.toss-proceed-btn:hover,
+.toss-home-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes toss-buttons-appear {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Victory Sparkle Effect */
+.toss-sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #FFD700;
+  border-radius: 50%;
+  animation: sparkle-blink 1.5s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes sparkle-blink {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1.6); }
+}
+
+/* =================================================== */
+/* New Buttons for Settings (Overs/Wickets + Bat/Bowl) */
+/* =================================================== */
+.toss-setting-btn {
+  padding: 20px 40px;
+  font-size: 22px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #007bff, #00c6ff);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.toss-setting-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 123, 255, 0.6);
+}
+
+/* Highlight selected overs/wickets */
+.toss-setting-btn.selected {
+  background: linear-gradient(45deg, #ff9800, #ffb74d);
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 152, 0, 0.8);
+}
+
+/* Cricket ball PNG styling */
+.toss-ball-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: spin 6s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Bat/Bowl choice images */
+.toss-choice-images {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 50px;
+  z-index: 10;
+}
+
+.choice-img {
+  width: 180px;
+  height: auto;
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(.2,.9,.2,1);
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.5));
+  border-radius: 12px;
+  transform-origin: center;
+}
+
+.choice-img:hover {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 30px rgba(0, 180, 255, 0.95));
+}
+
+.choice-img.selected {
+  transform: scale(1.18);
+  filter: drop-shadow(0 0 45px rgba(0, 180, 255, 1));
+}
+
+/* Faded background highlight when chosen */
+.highlight-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0.12;
+  width: 80vw;
+  max-width: 900px;
+  filter: blur(6px) saturate(1.1);
+}

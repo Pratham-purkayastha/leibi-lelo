@@ -1,10 +1,9 @@
-// TossScreen.jsx
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import "./TossScreen.css";
 
-export default function TossScreen({ onAction }) {
-  const [step, setStep] = useState(0); // start with settings
+export default function TossScreen({ onAction, setGameSettings }) {
+  const [step, setStep] = useState(0);
   const [choice, setChoice] = useState(null);
   const [userNumber, setUserNumber] = useState(null);
   const [result, setResult] = useState(null);
@@ -40,8 +39,16 @@ export default function TossScreen({ onAction }) {
 
   const handleBatBowlChoice = (pick) => {
     setSelectedBatBowl(pick);
+
+    // ✅ Save settings before moving to Game
+    setGameSettings({
+      overs,
+      wickets,
+      batOrBowl: pick,
+    });
+
     setTimeout(() => {
-      onAction("game"); // placeholder for next screen
+      onAction("game");
     }, 1500);
   };
 
@@ -72,7 +79,7 @@ export default function TossScreen({ onAction }) {
       {/* Stumps */}
       <img src="/images/stumps1.png" alt="stumps" className="toss-stumps" />
 
-      {/* ---------------- Step 0: Match Settings ---------------- */}
+      {/* Step 0: Match Settings */}
       {step === 0 && (
         <div className="toss-step1">
           <h2 className="toss-title">Choose Overs & Wickets</h2>
@@ -114,7 +121,6 @@ export default function TossScreen({ onAction }) {
             </div>
           </div>
 
-          {/* Proceed button only if both selected */}
           {overs && wickets && (
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -129,7 +135,7 @@ export default function TossScreen({ onAction }) {
         </div>
       )}
 
-      {/* ---------------- Step 1: Odd/Even Choice ---------------- */}
+      {/* Step 1: Odd/Even */}
       {step === 1 && (
         <div className="toss-step1">
           <h2 className="toss-title">Choose Odd or Even</h2>
@@ -156,7 +162,7 @@ export default function TossScreen({ onAction }) {
         </div>
       )}
 
-      {/* ---------------- Step 2: Number Selection ---------------- */}
+      {/* Step 2: Number Selection */}
       {step === 2 && (
         <div className="toss-step2">
           <h2 className="toss-title">Pick a Number (1–6)</h2>
@@ -177,11 +183,11 @@ export default function TossScreen({ onAction }) {
         </div>
       )}
 
-      {/* ---------------- Step 3: Result Animation ---------------- */}
+      {/* Step 3: Result Animation */}
       {step === 3 && (
         <div className="toss-step3">
           <div className="toss-battle-arena">
-            {/* Player Side */}
+            {/* Player */}
             <div className="toss-player-side">
               <div className="toss-avatar">🧑‍🦱</div>
               <div className="toss-player-label">You</div>
@@ -195,7 +201,7 @@ export default function TossScreen({ onAction }) {
               </motion.div>
             </div>
 
-            {/* Center Calculation */}
+            {/* Center */}
             <div className="toss-calculation">
               <div className="toss-calc-line">
                 <span className="toss-calc-number">{userNumber}</span>
@@ -209,7 +215,7 @@ export default function TossScreen({ onAction }) {
               </div>
             </div>
 
-            {/* AI Side */}
+            {/* AI */}
             <div className="toss-ai-side">
               <div className="toss-avatar">🤖</div>
               <div className="toss-ai-label">AI</div>
@@ -224,7 +230,6 @@ export default function TossScreen({ onAction }) {
             </div>
           </div>
 
-          {/* Final Result + Effects */}
           <div className="toss-final-result">
             {playerWon ? (
               <>
@@ -246,7 +251,6 @@ export default function TossScreen({ onAction }) {
             )}
           </div>
 
-          {/* Next Step Button */}
           <div className="toss-action-buttons">
             <button className="toss-proceed-btn" onClick={() => setStep(4)}>
               Next
@@ -255,7 +259,7 @@ export default function TossScreen({ onAction }) {
         </div>
       )}
 
-      {/* ---------------- Step 4: Bat/Bowl Choice ---------------- */}
+      {/* Step 4: Bat/Bowl Choice */}
       {step === 4 && (
         <div className="toss-step1">
           {playerWon ? (
@@ -309,4 +313,5 @@ export default function TossScreen({ onAction }) {
     </div>
   );
 }
+
 

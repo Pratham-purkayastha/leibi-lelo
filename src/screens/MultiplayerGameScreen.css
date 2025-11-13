@@ -1,0 +1,754 @@
+/* GameScreen.css — Complete Enhanced styles with all improvements */
+
+/* ---------- Base ---------- */
+:root{
+  --accent: #ffcc33;
+  --danger: #ff6b6b;
+  --muted: rgba(255,255,255,0.75);
+  --glass: rgba(0,0,0,0.55);
+  --glass-2: rgba(0,0,0,0.35);
+}
+
+* { box-sizing: border-box; }
+html,body,#root { height: 100%; margin: 0; padding: 0; }
+.game-screen {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  font-family: "Poppins", "Segoe UI", Roboto, Arial, sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* ---------- Modal Overlay ---------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Enhanced Scoreboard ---------- */
+.game-scoreboard {
+  position: absolute;
+  right: 28px;
+  top: 18px;
+  width: 380px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.68), rgba(0,0,0,0.46));
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 60;
+}
+
+.game-scoreboard .gs-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+
+.batting-info {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: rgba(255, 204, 51, 0.2);
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 204, 51, 0.3);
+}
+
+.settings-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.settings-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.game-scoreboard .gs-big {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.gs-player {
+  flex: 1;
+  text-align: center;
+}
+
+.gs-subtitle {
+  font-size: 12px;
+  color: #dfe9e9;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.gs-score {
+  font-size: 30px;
+  font-weight: 800;
+  color: #fff;
+  margin-top: 4px;
+}
+
+.gs-vertical-divider {
+  width: 1px;
+  background: rgba(255,255,255,0.06);
+  height: 56px;
+  border-radius: 2px;
+}
+
+.game-scoreboard .smalls {
+  font-size: 13px;
+  color: #d6e0e0;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.game-scoreboard .target {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #ffeaa7;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* ---------- Play area layout ---------- */
+.play-area {
+  width: 100%;
+  height: calc(100vh - 90px);
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 80px 30px 80px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+/* side columns */
+.side {
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.player-side { align-items: flex-start; }
+.computer-side { align-items: flex-end; }
+
+/* Enhanced hand image */
+.hand-img {
+  width: 170px;
+  height: auto;
+  filter: drop-shadow(0 12px 30px rgba(0,0,0,0.6));
+  transform-origin: center;
+}
+
+/* Enhanced hand messages */
+.hand-msg {
+  margin-top: 12px;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 4px 10px #ffffff, 0 0 20px #ffffff;
+  font-size: 22px;
+}
+
+.glow-text-enhanced {
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  text-shadow: 
+    0 0 10px #ffffff,
+    0 0 20px #e0e0e0,
+    0 0 30px #cfcfcc,
+    2px 2px 12px rgba(0,0,0,0.9) !important;
+  background: linear-gradient(135deg, var(--accent), #ffeb3b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #ffffff !important;
+  background-clip: text;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 2px solid rgba(255, 204, 51, 0.3);
+  padding: 8px 16px;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 204, 51, 0.5);
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(255, 204, 51, 0.8);
+    transform: scale(1.02);
+  }
+}
+
+/* ---------- Center stage (enhanced) ---------- */
+.center-stage {
+  width: 36%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Enhanced ball row */
+.ball-row {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.ball-slot { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.number-ball-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.number-ball-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Enhanced ball image - increased size */
+.ball-img-enhanced {
+  width: 90px !important; /* Increased from 76px */
+  height: auto;
+  display: block;
+  border-radius: 50%;
+  box-shadow: 
+    0 15px 35px rgba(0,0,0,0.6),
+    0 5px 15px rgba(255, 204, 51, 0.2);
+  transform-origin: center;
+  transition: all 0.3s ease;
+}
+
+.number-ball-btn:hover .ball-img-enhanced {
+  box-shadow: 
+    0 20px 40px rgba(0,0,0,0.7),
+    0 5px 20px rgba(255, 204, 51, 0.4);
+  filter: brightness(1.1);
+}
+
+/* number overlay on ball */
+.ball-number-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 800;
+  font-size: 22px; /* Increased for bigger balls */
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+
+/* Enhanced center result area */
+.center-result-wrap {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 8px;
+}
+
+.center-result {
+  position: absolute;
+  font-size: 48px;
+  font-weight: 900;
+  color: #fff;
+  padding: 12px 26px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
+  text-shadow: 2px 8px 30px rgba(0,0,0,0.6);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.center-result.runs { 
+  color: var(--accent); 
+  box-shadow: 0 0 30px rgba(255, 204, 51, 0.4);
+}
+
+.center-result.out { 
+  color: var(--danger); 
+  box-shadow: 0 0 30px rgba(255, 107, 107, 0.4);
+}
+
+/* Enhanced flying run */
+.fly-run {
+  position: absolute;
+  font-size: 60px; /* bada visible */
+  font-weight: 900;
+  color: #ffffff; /* white */
+  text-shadow: 0 0 15px #fff, 0 0 30px #fff, 0 0 45px rgba(255,255,255,0.9);
+  z-index: 999;
+  animation: flyToScoreboard 3s linear forwards;
+}
+
+@keyframes flyToScoreboard {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(900px, -300px) scale(2) rotate(720deg);
+    opacity: 1; /* ⚡ abhi tak clearly visible */
+  }
+  100% {
+    transform: translate(1300px, -450px) scale(1.2) rotate(1440deg);
+    opacity: 0; /* sirf last me fade out */
+  }
+}
+/* Enhanced "Get ready" text */
+.ready-text-enhanced {
+  position: absolute;
+  bottom: -80px;
+  font-size: 32px !important; /* Much bigger */
+  font-weight: 900 !important; /* Much bolder */
+  color: var(--accent) !important;
+  background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+  padding: 16px 32px !important; /* More padding */
+  border-radius: 20px;
+  box-shadow: 
+    0 15px 35px rgba(0,0,0,0.6),
+    0 0 40px rgba(255, 204, 51, 0.3);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 204, 51, 0.4);
+  text-shadow: 
+    0 0 15px var(--accent),
+    2px 2px 10px rgba(0,0,0,0.8);
+  animation: ready-pulse 1.5s ease-in-out infinite;
+
+white-space: nowrap;
+text-align: center;
+}
+
+@keyframes ready-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 
+      0 15px 35px rgba(0,0,0,0.6),
+      0 0 40px rgba(255, 204, 51, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 
+      0 20px 45px rgba(0,0,0,0.7),
+      0 0 50px rgba(255, 204, 51, 0.5);
+  }
+}
+
+/* ---------- Enhanced modal styles ---------- */
+.modal {
+  width: 520px;
+  max-width: 92%;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(0,0,0,0.85));
+  border-radius: 20px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+}
+
+.modal h2 { 
+  margin: 8px 0 20px; 
+  font-size: 28px; 
+  color: var(--accent); 
+  text-shadow: 0 0 15px var(--accent);
+}
+
+.modal p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 12px 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.modal button { 
+  margin: 8px;
+  padding: 12px 24px; 
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  border: none; 
+  border-radius: 12px; 
+  cursor: pointer; 
+  font-weight: 800; 
+  color: #fff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+}
+
+.modal button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 152, 0, 0.6);
+  background: linear-gradient(135deg, #ffa726, #ff9800);
+}
+
+/* Settings Modal Specific Styles */
+.settings-modal {
+  width: 600px;
+  text-align: left;
+}
+
+.settings-section {
+  margin: 25px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.settings-section h3 {
+  color: var(--accent);
+  font-size: 18px;
+  margin: 0 0 15px 0;
+  text-shadow: 0 0 10px var(--accent);
+}
+
+.settings-section label {
+  display: block;
+  margin: 10px 0;
+  font-size: 14px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.settings-section input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+  accent-color: var(--accent);
+}
+
+.settings-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.restart-btn {
+  background: linear-gradient(135deg, var(--danger), #e53935) !important;
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4) !important;
+}
+
+.restart-btn:hover {
+  background: linear-gradient(135deg, #ff5722, var(--danger)) !important;
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6) !important;
+}
+
+/* Innings Modal Centered */
+.innings-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(0,0,0,0.85));
+  border: 2px solid var(--accent);
+  box-shadow: 
+    0 25px 80px rgba(0,0,0,0.8),
+    0 0 50px rgba(255, 204, 51, 0.3);
+}
+
+.innings-score {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 20px 0;
+  text-shadow: 0 0 15px var(--accent);
+}
+
+.innings-target {
+  font-size: 18px;
+  color: #fff;
+  margin: 15px 0;
+  background: rgba(255, 204, 51, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 204, 51, 0.3);
+}
+
+/* ---------- Legacy styles for backward compatibility ---------- */
+.ball-img {
+  width: 76px;
+  height: auto;
+  display: block;
+  border-radius: 50%;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.5);
+  transform-origin: center;
+}
+
+.ball-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 800;
+  font-size: 18px;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+  pointer-events: none;
+}
+
+.ready-text {
+  position: absolute;
+  bottom: -48px;
+  font-size: 15px;
+  color: #eaf6ff;
+  background: rgba(0,0,0,0.28);
+  padding: 6px 12px;
+  border-radius: 10px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+}
+
+.glow-text {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #fff;
+  }
+}
+
+/* ---------- Responsive rules ---------- */
+@media (max-width: 1200px) {
+  .game-scoreboard { 
+    width: 350px; 
+    right: 20px; 
+  }
+  .batting-info {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .play-area { 
+    padding: 30px 24px; 
+    gap: 10px; 
+  }
+  .game-scoreboard { 
+    right: 20px; 
+    top: 12px; 
+    width: 320px;
+  }
+  .side { 
+    width: 26%; 
+  }
+  .center-stage { 
+    width: 46%; 
+  }
+  .hand-img { 
+    width: 140px; 
+  }
+  .ball-img-enhanced { 
+    width: 75px !important; 
+  }
+  .ball-number-label {
+    font-size: 18px;
+  }
+  .center-result { 
+    font-size: 36px; 
+    padding: 10px 18px; 
+  }
+  .fly-run { 
+    font-size: 32px; 
+  }
+  .ready-text-enhanced {
+    font-size: 24px !important;
+    padding: 12px 24px !important;
+  }
+  .modal { 
+    width: 90%; 
+  }
+  .settings-modal {
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .play-area { 
+    flex-direction: column; 
+    gap: 15px; 
+    align-items: center; 
+    height: auto; 
+    padding: 20px; 
+  }
+  .side { 
+    width: 90%; 
+    align-items: center; 
+  }
+  .player-side, .computer-side { 
+    align-items: center; 
+  }
+  .ball-row { 
+    flex-wrap: wrap; 
+    gap: 8px; 
+    justify-content: center;
+  }
+  .ball-img-enhanced {
+    width: 65px !important;
+  }
+  .ball-number-label {
+    font-size: 16px;
+  }
+  .game-scoreboard { 
+    width: 95%; 
+    left: 2.5%; 
+    right: auto; 
+    top: 10px; 
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .gs-row {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .batting-info {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+  .hand-img { 
+    width: 120px; 
+  }
+  .center-result {
+    font-size: 28px;
+  }
+  .ready-text-enhanced {
+    font-size: 20px !important;
+    padding: 10px 20px !important;
+  }
+  .glow-text-enhanced {
+    font-size: 16px !important;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ball-row {
+    gap: 6px;
+  }
+  .ball-img-enhanced {
+    width: 55px !important;
+  }
+  .ball-number-label {
+    font-size: 14px;
+  }
+  .ready-text-enhanced {
+    font-size: 18px !important;
+    padding: 8px 16px !important;
+  }
+  .center-result {
+    font-size: 24px;
+    padding: 8px 16px;
+  }
+  .modal {
+    padding: 20px;
+  }
+  .settings-modal {
+    padding: 15px;
+  }
+  .settings-section {
+    padding: 15px;
+    margin: 15px 0;
+  }
+}
+/* ===== Multplayer tweaks (paste at end of GameScreen.css) ===== */
+
+/* clearer player name labels above hands */
+.gs-subtitle {
+  letter-spacing: 0.6px;
+  font-size: 14px;
+  color: #f3f7fb; /* slightly brighter */
+}
+
+/* small badge under hand to show Player name (mobile-friendly) */
+.hand-badge {
+  margin-top: 10px;
+  font-weight: 800;
+  font-size: 14px;
+  color: #fff;
+  background: rgba(0,0,0,0.28);
+  padding: 6px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* highlight the active batting side */
+.side.active {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 30px rgba(0,0,0,0.5);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+/* add a clear turn-indicator banner above center-stage */
+.turn-indicator {
+  font-weight: 900;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(30,136,229,0.16), rgba(16,118,189,0.12));
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* stronger disabled style for number buttons */
+.number-ball-btn:disabled .ball-img-enhanced {
+  filter: grayscale(0.6) brightness(0.7);
+  transform: scale(0.96);
+  opacity: 0.65;
+}
+
+/* small responsive tweak: stack player labels under hands on narrow screens */
+@media (max-width: 768px) {
+  .hand-badge { font-size: 13px; padding: 5px 8px; }
+  .hand-msg { font-size: 16px; }
+}
